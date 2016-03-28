@@ -3,7 +3,8 @@ clc;
 close all;
 
 % [x,fs] = audioread('Day.wav');
-[x,fs] = audioread('L_Dopa.wav');
+% [x,fs] = audioread('L_Dopa.wav');
+[x,fs] = audioread('Making_Plans_for_Nigel.wav');
 x = mean(x,2);
 
 %% Left Channels
@@ -93,7 +94,7 @@ yR = yR1 + yR2 + yR3 + yC1;
 % yR = (yR - min(yR))./(max(yR) - min(yR));
 
 %MixThem
-y = [yL, yR];
+y_1 = [yL, yR];
 
 %% If you wanna cross test
 % fs = 1000;

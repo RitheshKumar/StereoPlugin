@@ -1,11 +1,12 @@
-clear all;
+% clear all;
 clc;
 close all;
 
 % [x,fs] = audioread('Day.wav');
-[x,fs] = audioread('L_Dopa.wav');
+% [x,fs] = audioread('L_Dopa.wav');
+[x,fs] = audioread('Making_Plans_for_Nigel.wav');
 x = mean(x,2);
-freq = 20000;
+freq = 15000;
 % divide the freq into two parts: lower part is for both L and R, upper
 % part is either for L or R
 division = 0.2;
@@ -85,7 +86,7 @@ Rs = 30;
  
  %LFC
  yC1 = filter( bC1, aC1, x );
- yC1 = 1.8*yC1;
+ yC1 = 1.23*yC1;
 
 
 %% Mixing them all into stereo
@@ -99,7 +100,7 @@ yR = yR1 + yR2 + yR3 + yC1;
 % yR = (yR - min(yR))./(max(yR) - min(yR));
 
 %MixThem
-y = [yL, yR];
+y_2 = [yL, yR];
 
 %% If you wanna cross test
 % fs = 1000;
