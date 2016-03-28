@@ -6,56 +6,61 @@ close all;
 [x,fs] = audioread('L_Dopa.wav');
 x = mean(x,2);
 freq = 20000;
+% divide the freq into two parts: lower part is for both L and R, upper
+% part is either for L or R
+division = 0.2;
+% further divide the upper part into 6 bands
+division2 = 1.0 / 6;
+bandwidth = freq*(1-division)*division2;
+
+%% pass bands after frequency division
+freqL1 = [freq*division freq*division+bandwidth];
+freqR1 = [freq*division+bandwidth freq*division+2*bandwidth];
+freqL2 = [freq*division+2*bandwidth freq*division+3*bandwidth];
+freqR2 = [freq*division+3*bandwidth freq*division+4*bandwidth];
+freqL3 = [freq*division+4*bandwidth freq*division+5*bandwidth];
+freqR3 = [freq*division+5*bandwidth freq*division+6*bandwidth];
+freqC  = freq * division;
 
 %% Left Channels
 
-
-Wp = ;
-Ws = [1000 6300]/(fs/2);
+Wp = freqL1 / (fs / 2);
+Ws = [freqL1(1)-500 freqL1(2)+500] / (fs / 2);
 Rp = 3;
-Rs = 30;
+Rs = 20;
 [bL1, aL1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
-Wp = [8600 11900]/(fs/2);
-Ws = [8200 12400]/(fs/2);
-Rp = 3;
-Rs = 30;
+Wp = freqL2 / (fs / 2);
+Ws = [freqL2(1)-500 freqL2(2)+500] / (fs / 2);
 [bL2, aL2] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
-Wp = [15200 18500]/(fs/2);
-Ws = [14200 19500]/(fs/2);
-Rp = 3;
-Rs = 30;
+Wp = freqL3 / (fs / 2);
+Ws = [freqL3(1)-500 freqL3(2)+500] / (fs / 2);
 [bL3, aL3] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 %% Right Channels
 
-Wp = [5300 8600]/(fs/2);
-Ws = [4300 9600]/(fs/2);
-Rp = 3;
-Rs = 30;
+Wp = freqR1 / (fs / 2);
+Ws = [freqR1(1)-500 freqR1(2)+500] / (fs / 2);
 [bR1, aR1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
-Wp = [11900 15200]/(fs/2);
-Ws = [11400 15700]/(fs/2);
-Rp = 3;
-Rs = 30;
+
+Wp = freqR2 / (fs / 2);
+Ws = [freqR2(1)-500 freqR2(2)+500] / (fs / 2);
 [bR2, aR2] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
-Wp = 18500/(fs/2);
-Ws = 17500/(fs/2);
-Rp = 3;
-Rs = 30;
-[bR3, aR3] = getButtCoeffs( Wp, Ws, Rp, Rs, 1, 1 );
+Wp = [freqR3(1) freqR3(2)-500] / (fs / 2);
+Ws = [freqR3(1)-500 freqR3(2)] / (fs / 2);
+[bR3, aR3] = getButtCoeffs( Wp, Ws, Rp, Rs, 1);
 
 %% Common LPF
 
-Wp = 1700 / (fs/2);
-Ws = 2500/ (fs/2);
+Wp = (freqC - 500) / (fs / 2);
+Ws = freqC / (fs / 2);
 Rp = 3;
 Rs = 30;
 [bC1, aC1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
@@ -80,7 +85,7 @@ Rs = 30;
  
  %LFC
  yC1 = filter( bC1, aC1, x );
-%  yC1 = 0.8*yC1;
+ yC1 = 1.8*yC1;
 
 
 %% Mixing them all into stereo

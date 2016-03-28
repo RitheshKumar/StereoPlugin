@@ -79,7 +79,7 @@ Rs = 30;
  
  %LFC
  yC1 = filter( bC1, aC1, x );
-%  yC1 = 0.8*yC1;
+ yC1 = 1.23*yC1;
 
 
 %% Mixing them all into stereo
