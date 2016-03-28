@@ -2,60 +2,62 @@ clear all;
 clc;
 close all;
 
-[x,fs] = audioread('sv44_short.wav');
+% [x,fs] = audioread('Day.wav');
+[x,fs] = audioread('L_Dopa.wav');
+x = mean(x,2);
 
 %% Left Channels
-figure
+
 
 Wp = [2000 5300]/(fs/2);
-Ws = [1800 5500]/(fs/2);
+Ws = [1000 6300]/(fs/2);
 Rp = 3;
-Rs = 40;
-[aL1, bL1 ] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 30;
+[bL1, aL1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 Wp = [8600 11900]/(fs/2);
-Ws = [8400 12100]/(fs/2);
+Ws = [8200 12400]/(fs/2);
 Rp = 3;
-Rs = 40;
-[aL2, bL2 ] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 30;
+[bL2, aL2] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 Wp = [15200 18500]/(fs/2);
-Ws = [15000 18700]/(fs/2);
+Ws = [14200 19500]/(fs/2);
 Rp = 3;
-Rs = 40;
-[aL3, bL3 ] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 30;
+[bL3, aL3] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 %% Right Channels
-figure
 
 Wp = [5300 8600]/(fs/2);
-Ws = [5100 8800]/(fs/2);
+Ws = [4300 9600]/(fs/2);
 Rp = 3;
-Rs = 40;
-[aR1, bR1 ] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 30;
+[bR1, aR1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 Wp = [11900 15200]/(fs/2);
-Ws = [11700 15400]/(fs/2);
+Ws = [11400 15700]/(fs/2);
 Rp = 3;
-Rs = 40;
-[aR2, bR2 ] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 30;
+[bR2, aR2] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+
 
 Wp = 18500/(fs/2);
-Ws = 18000/(fs/2);
+Ws = 17500/(fs/2);
 Rp = 3;
-Rs = 40;
-[aR3, bR3 ] = getButtCoeffs( Wp, Ws, Rp, Rs, 1, 1 );
+Rs = 30;
+[bR3, aR3] = getButtCoeffs( Wp, Ws, Rp, Rs, 1, 1 );
 
 %% Common LPF
 
-Wp = [50 2000]/(fs/2);
-Ws = [1 2200]/(fs/2);
+Wp = 1700 / (fs/2);
+Ws = 2500/ (fs/2);
 Rp = 3;
-Rs = 40;
-[aC1, bC1 ] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 30;
+[bC1, aC1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 %% Do filtering

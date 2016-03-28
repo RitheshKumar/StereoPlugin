@@ -16,9 +16,9 @@ function [b, a] = getButtCoeffs(Wp,Ws,Rp,Rs, draw, type)
     if ( draw == 1)        
         sos = zp2sos(z,p,k);
         
-        figure
+%         figure
         freqz(sos,128,44100)
         title(sprintf('n = %d Butterworth Filter',n))
-%         hold on;
+        hold on;
     end
 end
