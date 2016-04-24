@@ -51,9 +51,14 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    //==============================================================================
+    float getPeakVal(int channel ){ return _peakVal[channel]; }
 
 private:
     //==============================================================================
+    float *_peakVal; //we will store only values for the first 2 channels
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (UpmixerAudioProcessor)
 };
 

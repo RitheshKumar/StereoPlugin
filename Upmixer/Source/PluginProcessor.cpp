@@ -13,7 +13,7 @@
 
 
 //==============================================================================
-UpmixerAudioProcessor::UpmixerAudioProcessor()
+UpmixerAudioProcessor::UpmixerAudioProcessor() : _peakVal(new float[2])
 {
 }
 
@@ -103,11 +103,15 @@ void UpmixerAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        float* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data...
+//    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+//    {
+//        float* channelData = buffer.getWritePointer (channel);
+//
+//        // ..do something to the data...
+//    }
+    
+    for (int channel=0; channel < 2; channel++) {
+        _peakVal[channel] = buffer.getMagnitude(channel, 200, 1);
     }
 }
 

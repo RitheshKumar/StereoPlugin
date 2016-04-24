@@ -11,6 +11,14 @@
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.0">
   <MAINGROUP id="ebwOtO" name="Upmixer">
     <GROUP id="{3707AD4A-892A-33B5-53F9-FB1007B3F0D0}" name="Source">
+      <FILE id="TXUyH7" name="ErrorDef.h" compile="0" resource="0" file="Source/ErrorDef.h"/>
+      <FILE id="iyRuQO" name="Synthesis.h" compile="0" resource="0" file="Source/Synthesis.h"/>
+      <FILE id="E2QA0n" name="Util.h" compile="0" resource="0" file="Source/Util.h"/>
+      <FILE id="Rsu2m5" name="peakBar.cpp" compile="1" resource="0" file="Source/peakBar.cpp"/>
+      <FILE id="XfLG3w" name="PeakProgramMeter.cpp" compile="1" resource="0"
+            file="Source/PeakProgramMeter.cpp"/>
+      <FILE id="cBDa9l" name="PeakProgramMeter.h" compile="0" resource="0"
+            file="Source/PeakProgramMeter.h"/>
       <FILE id="Rsfgin" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="sks1le" name="PluginProcessor.h" compile="0" resource="0"
