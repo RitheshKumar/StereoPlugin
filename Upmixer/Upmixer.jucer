@@ -8,9 +8,53 @@
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="UpmixerAU"
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.Upmixer"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.0">
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.1.0">
   <MAINGROUP id="ebwOtO" name="Upmixer">
     <GROUP id="{3707AD4A-892A-33B5-53F9-FB1007B3F0D0}" name="Source">
+      <FILE id="eSAviM" name="Bessel.h" compile="0" resource="0" file="include/DspFilters/Bessel.h"/>
+      <FILE id="Wk8z3N" name="Biquad.h" compile="0" resource="0" file="include/DspFilters/Biquad.h"/>
+      <FILE id="tKUvTe" name="Butterworth.h" compile="0" resource="0" file="include/DspFilters/Butterworth.h"/>
+      <FILE id="QbidHd" name="Cascade.h" compile="0" resource="0" file="include/DspFilters/Cascade.h"/>
+      <FILE id="zwQu5P" name="ChebyshevI.h" compile="0" resource="0" file="include/DspFilters/ChebyshevI.h"/>
+      <FILE id="tpL682" name="ChebyshevII.h" compile="0" resource="0" file="include/DspFilters/ChebyshevII.h"/>
+      <FILE id="ZGvD0H" name="Common.h" compile="0" resource="0" file="include/DspFilters/Common.h"/>
+      <FILE id="hh4Rn4" name="Custom.h" compile="0" resource="0" file="include/DspFilters/Custom.h"/>
+      <FILE id="avce0g" name="Design.h" compile="0" resource="0" file="include/DspFilters/Design.h"/>
+      <FILE id="DGiVRO" name="Dsp.h" compile="0" resource="0" file="include/DspFilters/Dsp.h"/>
+      <FILE id="LSaUJR" name="Elliptic.h" compile="0" resource="0" file="include/DspFilters/Elliptic.h"/>
+      <FILE id="vbPgWD" name="Filter.h" compile="0" resource="0" file="include/DspFilters/Filter.h"/>
+      <FILE id="n1idB4" name="Layout.h" compile="0" resource="0" file="include/DspFilters/Layout.h"/>
+      <FILE id="r3i5xQ" name="Legendre.h" compile="0" resource="0" file="include/DspFilters/Legendre.h"/>
+      <FILE id="n5QCAr" name="MathSupplement.h" compile="0" resource="0"
+            file="include/DspFilters/MathSupplement.h"/>
+      <FILE id="WqcxWu" name="Params.h" compile="0" resource="0" file="include/DspFilters/Params.h"/>
+      <FILE id="QDupVp" name="PoleFilter.h" compile="0" resource="0" file="include/DspFilters/PoleFilter.h"/>
+      <FILE id="ehh62J" name="RBJ.h" compile="0" resource="0" file="include/DspFilters/RBJ.h"/>
+      <FILE id="YNhOIv" name="RootFinder.h" compile="0" resource="0" file="include/DspFilters/RootFinder.h"/>
+      <FILE id="OhPuRV" name="SmoothedFilter.h" compile="0" resource="0"
+            file="include/DspFilters/SmoothedFilter.h"/>
+      <FILE id="re95lU" name="State.h" compile="0" resource="0" file="include/DspFilters/State.h"/>
+      <FILE id="e7V0bP" name="Types.h" compile="0" resource="0" file="include/DspFilters/Types.h"/>
+      <FILE id="lhvJbl" name="Utilities.h" compile="0" resource="0" file="include/DspFilters/Utilities.h"/>
+      <FILE id="I6Qbax" name="Bessel.cpp" compile="1" resource="0" file="Source/Bessel.cpp"/>
+      <FILE id="BDuHjv" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
+      <FILE id="tgfoho" name="Butterworth.cpp" compile="1" resource="0" file="Source/Butterworth.cpp"/>
+      <FILE id="X4hNQ8" name="Cascade.cpp" compile="1" resource="0" file="Source/Cascade.cpp"/>
+      <FILE id="vsMaBs" name="ChebyshevI.cpp" compile="1" resource="0" file="Source/ChebyshevI.cpp"/>
+      <FILE id="LipgGa" name="ChebyshevII.cpp" compile="1" resource="0" file="Source/ChebyshevII.cpp"/>
+      <FILE id="lo1tao" name="Custom.cpp" compile="1" resource="0" file="Source/Custom.cpp"/>
+      <FILE id="Da2dVJ" name="Design.cpp" compile="1" resource="0" file="Source/Design.cpp"/>
+      <FILE id="p8LdnK" name="Documentation.cpp" compile="1" resource="0"
+            file="Source/Documentation.cpp"/>
+      <FILE id="Gd5U21" name="dragBox.cpp" compile="1" resource="0" file="Source/dragBox.cpp"/>
+      <FILE id="b3fyFm" name="Elliptic.cpp" compile="1" resource="0" file="Source/Elliptic.cpp"/>
+      <FILE id="K48Yy6" name="Filter.cpp" compile="1" resource="0" file="Source/Filter.cpp"/>
+      <FILE id="BczVxD" name="Legendre.cpp" compile="1" resource="0" file="Source/Legendre.cpp"/>
+      <FILE id="QIQGLH" name="Param.cpp" compile="1" resource="0" file="Source/Param.cpp"/>
+      <FILE id="vEfvP1" name="PoleFilter.cpp" compile="1" resource="0" file="Source/PoleFilter.cpp"/>
+      <FILE id="oo7piG" name="RBJ.cpp" compile="1" resource="0" file="Source/RBJ.cpp"/>
+      <FILE id="HRogsa" name="RootFinder.cpp" compile="1" resource="0" file="Source/RootFinder.cpp"/>
+      <FILE id="Uir18L" name="State.cpp" compile="1" resource="0" file="Source/State.cpp"/>
       <FILE id="TXUyH7" name="ErrorDef.h" compile="0" resource="0" file="Source/ErrorDef.h"/>
       <FILE id="iyRuQO" name="Synthesis.h" compile="0" resource="0" file="Source/Synthesis.h"/>
       <FILE id="E2QA0n" name="Util.h" compile="0" resource="0" file="Source/Util.h"/>
@@ -31,24 +75,26 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Upmixer"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Upmixer"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Upmixer"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="Upmixer"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../../../../Juce/JUCE/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../../Juce/JUCE/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
