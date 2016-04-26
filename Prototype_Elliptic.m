@@ -16,22 +16,22 @@ delayInSamples = fs/numDelaysPerSec;
 Wp = [2000 5300]/(fs/2);
 Ws = [1000 6300]/(fs/2);
 Rp = 3;
-Rs = 30;
-[bL1, aL1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
-
+Rs = 40;
+[bL1, aL1] = getEllipticCoeffs( Wp, Ws, Rp, Rs, 1 );
+%%
 
 Wp = [8600 11900]/(fs/2);
 Ws = [8200 12400]/(fs/2);
 Rp = 3;
-Rs = 30;
-[bL2, aL2] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 40;
+[bL2, aL2] = getEllipticCoeffs( Wp, Ws, Rp, Rs, 1 );
 
-
+%%
 Wp = [15200 18500]/(fs/2);
 Ws = [14200 19500]/(fs/2);
 Rp = 3;
-Rs = 30;
-[bL3, aL3] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 40;
+[bL3, aL3] = getEllipticCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 %% Right Channels
@@ -39,21 +39,21 @@ Rs = 30;
 Wp = [5300 8600]/(fs/2);
 Ws = [4300 9600]/(fs/2);
 Rp = 3;
-Rs = 30;
-[bR1, aR1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 40;
+[bR1, aR1] = getEllipticCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 Wp = [11900 15200]/(fs/2);
 Ws = [11400 15700]/(fs/2);
 Rp = 3;
-Rs = 30;
-[bR2, aR2] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+Rs = 40;
+[bR2, aR2] = getEllipticCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 Wp = 18500/(fs/2);
 Ws = 17500/(fs/2);
 Rp = 3;
-Rs = 30;
-[bR3, aR3] = getButtCoeffs( Wp, Ws, Rp, Rs, 1, 1 );
+Rs = 40;
+[bR3, aR3] = getEllipticCoeffs( Wp, Ws, Rp, Rs, 1, 1 );
 
 %% Common LPF
 
@@ -61,26 +61,28 @@ Wp = 1700 / (fs/2);
 Ws = 2500/ (fs/2);
 Rp = 3;
 Rs = 30;
-[bC1, aC1] = getButtCoeffs( Wp, Ws, Rp, Rs, 1 );
+[bC1, aC1] = getEllipticCoeffs( Wp, Ws, Rp, Rs, 1 );
 
 
 %% Do filtering
 
 %Left Channel
  yL1 = filter( bL1, aL1, x );
- yL1 = 1.4125*yL1;
+ yL1 = 3*yL1;
  yL2 = filter( bL2, aL2, x );
- yL2 = 1.6788*yL2; % 4.5 dB
+%  yL2 = 1.6788*yL2; % 4.5 dB
+ yL2 = 2*yL2;
  yL3 = filter( bL3, aL3, x );
- yL3 = 1.6788*yL3; % 4.5 dB
+%  yL3 = 1.6788*yL3; % 4.5 dB
+ yL3 = 2*yL3;
  
  %Right Channel
  yR1 = filter( bR1, aR1, x );
  yR1 = 1.4125*yR1; % 3dB Gain
  yR2 = filter( bR2, aR2, x );
- yR2 = 1.5849*yR2; % 4 dB Gain
+ yR2 = 1.4149*yR2; % 4 dB Gain
  yR3 = filter( bR3, aR3, x );
- yR3 = 1.58*yR3; % 4.5 dB
+ yR3 = 1.4188*yR3; % 4.5 dB
  
  %LFC
  yC1 = filter( bC1, aC1, x );
@@ -113,8 +115,10 @@ yRDel1 = filter( bDel1, aDel1, yRDel );
 yLDel1 = filter( bDel1, aDel1, yLDel );
 
 %Emphasize Higher Frequencies %3dB Gain
-yRDel2 = yRDel1*1.4125;
-yLDel2 = yRDel1*1.4125;
+% yRDel2 = yRDel1*1.4125;
+% yLDel2 = yRDel1*1.4125;
+yRDel2 = yRDel1*.4125;
+yLDel2 = yRDel1*.4125;
 
 %Add them up
 yR    = [yR; zeros(delayInSamples,1);];
