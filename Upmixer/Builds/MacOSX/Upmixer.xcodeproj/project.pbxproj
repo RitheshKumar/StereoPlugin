@@ -36,6 +36,7 @@
 		6026C965CD07BAED9ECC73D4 /* AUInputElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63142D35017156F834978F9C /* AUInputElement.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		60DFC4579AC223B98652455E /* MusicDeviceBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B800E4898DC7AB6E40EE9995 /* MusicDeviceBase.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
 		60EF7C079A5CD9B9C0BE55B9 /* juce_audio_processors.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6CA18D59180E6404632400E1 /* juce_audio_processors.mm */; };
+		621C6B4C095EFCFC75D2D752 /* DspFilters in Resources */ = {isa = PBXBuildFile; fileRef = 485CAD25F569B4F071EFD0D1 /* DspFilters */; };
 		6404E9B6FC17021A93B59104 /* ChebyshevI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 281C5EACFC69B80DF0407EDE /* ChebyshevI.cpp */; };
 		6BBD946A9EF1AFC53FEDBB4C /* RBJ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1F59E19AB78E7CA7D9F11 /* RBJ.cpp */; };
 		6D5FB35F82679C3344DF15FC /* AUCarbonViewDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99989D3A500923896604112D /* AUCarbonViewDispatch.cpp */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -402,6 +403,7 @@
 		4750394C9DC744FCDC44E28E /* juce_ios_Audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ios_Audio.cpp; path = ../../../../JUCE/modules/juce_audio_devices/native/juce_ios_Audio.cpp; sourceTree = SOURCE_ROOT; };
 		4790713DCCE016DD3FEF9CDC /* juce_StringPairArray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_StringPairArray.cpp; path = ../../../../JUCE/modules/juce_core/text/juce_StringPairArray.cpp; sourceTree = SOURCE_ROOT; };
 		484F1BDA8D8FFB91E365A2B4 /* juce_AbstractFifo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_AbstractFifo.h; path = ../../../../JUCE/modules/juce_core/containers/juce_AbstractFifo.h; sourceTree = SOURCE_ROOT; };
+		485CAD25F569B4F071EFD0D1 /* DspFilters */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DspFilters; path = /Users/musictechnology/Documents/StereoPlugin/Upmixer/include/DspFilters; sourceTree = "<group>"; };
 		487F84CDFC7E15A9A87851F7 /* juce_MidiOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_MidiOutput.h; path = ../../../../JUCE/modules/juce_audio_devices/midi_io/juce_MidiOutput.h; sourceTree = SOURCE_ROOT; };
 		48C399EF3E1B8D10909BC571 /* juce_MPEInstrument.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_MPEInstrument.cpp; path = ../../../../JUCE/modules/juce_audio_basics/mpe/juce_MPEInstrument.cpp; sourceTree = SOURCE_ROOT; };
 		48C54FE10C3114C7E74994B9 /* juce_RTAS_DigiCode2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_RTAS_DigiCode2.cpp; path = ../../../../JUCE/modules/juce_audio_plugin_client/RTAS/juce_RTAS_DigiCode2.cpp; sourceTree = SOURCE_ROOT; };
@@ -1293,42 +1295,6 @@
 				51940207CEFAA54AD89C0F78 /* juce_win32_QuickTimeMovieComponent.cpp */,
 			);
 			name = native;
-			sourceTree = "<group>";
-		};
-		24665AF01CCF375A0063B17D /* Include */ = {
-			isa = PBXGroup;
-			children = (
-				9AA6F4CBB5E8DAF5E63D7B8D /* Bessel.h */,
-				3155FA72775848003B147040 /* Biquad.h */,
-				8DDED187E07022C55269CEA0 /* Butterworth.h */,
-				0D669BB594C9DA6D2A18DAED /* Cascade.h */,
-				299D04405CC5BD8D51A6794A /* ChebyshevI.h */,
-				B620CEED5270D4D26E2C7311 /* ChebyshevII.h */,
-				1B884492C022F9EFB0E9DCB4 /* Common.h */,
-				340C4B84B482E94B832A2066 /* Custom.h */,
-				DE4C0422C807BC5DC343E372 /* Design.h */,
-				AB366F2245D82934F4B31805 /* Dsp.h */,
-				CB2A3850665E8082F427E0DF /* Elliptic.h */,
-				7E39951621347AC4E6A6655A /* Filter.h */,
-				E45C431F820FC757A0C5FDDA /* Layout.h */,
-				27D1BEF2B36152076DECB589 /* Legendre.h */,
-				2536D2AF0DE9EAB52DE01488 /* MathSupplement.h */,
-				AFB8E37A0EA2D3A579DD2CD9 /* Params.h */,
-				6CC093BCC7B84189A67F1DE9 /* PoleFilter.h */,
-				E17A0C3D2A819989EE07BC43 /* RBJ.h */,
-				E2954102B04AB2387B46C242 /* RootFinder.h */,
-				F06C3D109F7061D1F2B9AF96 /* SmoothedFilter.h */,
-				9BEE617E44756F19C2DA8347 /* State.h */,
-				7F5256A3907AD01DA70E3F06 /* ErrorDef.h */,
-				CA72337E595BAF1FB095BDF1 /* Synthesis.h */,
-				3A615AD2FEE45F325D4C1EF4 /* Util.h */,
-				84824ADAB205653B53736650 /* PeakProgramMeter.h */,
-				A657FAD364C8E792CFAB1E42 /* PluginProcessor.h */,
-				BBA88E85EDB5E758886AC9B9 /* PluginEditor.h */,
-				E87A96E48CA50902A0E9C310 /* Types.h */,
-				B8E4CE3449587453ABDF6876 /* Utilities.h */,
-			);
-			name = Include;
 			sourceTree = "<group>";
 		};
 		27431D9A0957EB31FE101290 /* placement */ = {
@@ -2428,6 +2394,42 @@
 			name = juce_events;
 			sourceTree = "<group>";
 		};
+		B5DE3AE34E1FFEF97DE4FA68 /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				9AA6F4CBB5E8DAF5E63D7B8D /* Bessel.h */,
+				3155FA72775848003B147040 /* Biquad.h */,
+				8DDED187E07022C55269CEA0 /* Butterworth.h */,
+				0D669BB594C9DA6D2A18DAED /* Cascade.h */,
+				299D04405CC5BD8D51A6794A /* ChebyshevI.h */,
+				B620CEED5270D4D26E2C7311 /* ChebyshevII.h */,
+				1B884492C022F9EFB0E9DCB4 /* Common.h */,
+				340C4B84B482E94B832A2066 /* Custom.h */,
+				DE4C0422C807BC5DC343E372 /* Design.h */,
+				AB366F2245D82934F4B31805 /* Dsp.h */,
+				CB2A3850665E8082F427E0DF /* Elliptic.h */,
+				7E39951621347AC4E6A6655A /* Filter.h */,
+				E45C431F820FC757A0C5FDDA /* Layout.h */,
+				27D1BEF2B36152076DECB589 /* Legendre.h */,
+				2536D2AF0DE9EAB52DE01488 /* MathSupplement.h */,
+				AFB8E37A0EA2D3A579DD2CD9 /* Params.h */,
+				6CC093BCC7B84189A67F1DE9 /* PoleFilter.h */,
+				E17A0C3D2A819989EE07BC43 /* RBJ.h */,
+				E2954102B04AB2387B46C242 /* RootFinder.h */,
+				F06C3D109F7061D1F2B9AF96 /* SmoothedFilter.h */,
+				9BEE617E44756F19C2DA8347 /* State.h */,
+				B8E4CE3449587453ABDF6876 /* Utilities.h */,
+				7F5256A3907AD01DA70E3F06 /* ErrorDef.h */,
+				84824ADAB205653B53736650 /* PeakProgramMeter.h */,
+				A657FAD364C8E792CFAB1E42 /* PluginProcessor.h */,
+				BBA88E85EDB5E758886AC9B9 /* PluginEditor.h */,
+				CA72337E595BAF1FB095BDF1 /* Synthesis.h */,
+				3A615AD2FEE45F325D4C1EF4 /* Util.h */,
+				E87A96E48CA50902A0E9C310 /* Types.h */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
 		B5F0A37393949B04B9DFEA35 /* juce_audio_processors */ = {
 			isa = PBXGroup;
 			children = (
@@ -2533,7 +2535,7 @@
 		C9C5A5BA89D482C3A0C505D0 /* Upmixer */ = {
 			isa = PBXGroup;
 			children = (
-				24665AF01CCF375A0063B17D /* Include */,
+				B5DE3AE34E1FFEF97DE4FA68 /* Include */,
 				CB1AE40E89F85A04A586B103 /* Source */,
 			);
 			name = Upmixer;
@@ -2988,6 +2990,7 @@
 		FD65D85F8B04C532B731B4B6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				485CAD25F569B4F071EFD0D1 /* DspFilters */,
 				3164E553194BCC0585DF012F /* Info.plist */,
 				79B21118FD5657EA2A1BCC65 /* RecentFilesMenuTemplate.nib */,
 			);
@@ -3106,6 +3109,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				621C6B4C095EFCFC75D2D752 /* DspFilters in Resources */,
 				A199228E35C8DD4582C20453 /* RecentFilesMenuTemplate.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3257,7 +3261,7 @@
 					../../JuceLibraryCode,
 					../../../../JUCE/modules,
 					"$(inherited)",
-					/Users/musictechnology/Documents/StereoPlugin/Upmixer/include/,
+					"\"$(SRCROOT)/../../include\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
@@ -3296,7 +3300,7 @@
 					../../JuceLibraryCode,
 					../../../../JUCE/modules,
 					"$(inherited)",
-					/Users/musictechnology/Documents/StereoPlugin/Upmixer/include/,
+					"\"$(SRCROOT)/../../include\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
