@@ -77,7 +77,7 @@ void UpmixerAudioProcessorEditor::resized()
     ppmBarL.setBounds(getWidth()/2-40, 100, 20, 300);
     ppmBarR.setBounds(getWidth()/2, 100, 20, 300);
     
-    presetList.setBounds(20, 100, 130, 22);
+    presetList.setBounds(getWidth()/2-75, 420, 130, 22);
     
     widthSetBox.setBounds(20, 100, 300, 225);
     depthSetBox.setBounds(475, 100, 300, 225);
