@@ -15,10 +15,12 @@
 //==============================================================================
 UpmixerAudioProcessor::UpmixerAudioProcessor() : _peakVal(new float[2])
 {
+    PeakProgramMeter::createInstance(pPPM);
 }
 
 UpmixerAudioProcessor::~UpmixerAudioProcessor()
 {
+    PeakProgramMeter::destroyInstance(pPPM);
 }
 
 //==============================================================================
@@ -79,6 +81,7 @@ void UpmixerAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    pPPM->initInstance(sampleRate, samplesPerBlock, getTotalNumInputChannels());
 }
 
 void UpmixerAudioProcessor::releaseResources()
@@ -110,9 +113,12 @@ void UpmixerAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
 //        // ..do something to the data...
 //    }
     
+    pPPM->ppmProcess( buffer.getArrayOfReadPointers(), buffer.getNumSamples());
+    
     for (int channel=0; channel < 2; channel++) {
-        _peakVal[channel] = buffer.getMagnitude(channel, 200, 1);
+        _peakVal[channel] = pPPM->getPeak(channel);
     }
+//    _peakVal[0] += 0.5f; //This is a debug tactic
 }
 
 //==============================================================================

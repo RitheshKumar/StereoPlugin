@@ -14,15 +14,15 @@
 
 //==============================================================================
 UpmixerAudioProcessorEditor::UpmixerAudioProcessorEditor (UpmixerAudioProcessor& p)
-                                                        : AudioProcessorEditor (&p), processor (p),
-                                                          presetList("Presets"),
-                                                          corrBarLabel(String::empty,"Correlation")
+: AudioProcessorEditor (&p), processor (p),
+presetList("Presets"),
+corrBarLabel(String::empty,"Correlation")
 
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (800, 600);
-
+    
     addAndMakeVisible(correlationBar);
     corrBarLabel.setFont(Font("Times New Roman", 20.0f, Font::plain ));
     addAndMakeVisible(corrBarLabel);
@@ -30,11 +30,14 @@ UpmixerAudioProcessorEditor::UpmixerAudioProcessorEditor (UpmixerAudioProcessor&
     addAndMakeVisible(ppmBarL); ppmBarL.setVertical(true);
     addAndMakeVisible(ppmBarR); ppmBarR.setVertical(true);
     
-    const char* options[] = { "Options", "Default", "Vocal+Instruments", "Piano+Instruments", nullptr };
+    const char* options[] = { "Options", "Default", "Vocal+Instruments", "Piano-Instruments", nullptr };
     presetList.addItemList(StringArray(options), 0);
     addAndMakeVisible(presetList);
-
-
+    
+    addAndMakeVisible(widthSetBox); widthSetBox.setSlider(true); //this is just for readability. The default is true.
+    addAndMakeVisible(depthSetBox); depthSetBox.setSlider(false);
+    
+    
     startTimer(10);
 }
 
@@ -46,7 +49,7 @@ UpmixerAudioProcessorEditor::~UpmixerAudioProcessorEditor()
 void UpmixerAudioProcessorEditor::paint (Graphics& g)
 {
     g.fillAll (Colours::white);
-
+    
     g.setColour (Colours::black);
     g.setFont (Font("Times New Roman", 22.0f, Font::bold ));
     g.drawText("MONO2STEREO", proportionOfWidth(0.4f), proportionOfHeight(0.05f), proportionOfWidth(0.3f), proportionOfHeight(0.15f), true);
@@ -70,15 +73,18 @@ void UpmixerAudioProcessorEditor::resized()
     
     correlationBar.setBounds(barArea.removeFromTop(35));
     corrBarLabel.setBounds(barArea.removeFromRight(getWidth()/2 + 35));
-
+    
     ppmBarL.setBounds(getWidth()/2-40, 100, 20, 300);
     ppmBarR.setBounds(getWidth()/2, 100, 20, 300);
     
     presetList.setBounds(20, 100, 130, 22);
     
+    widthSetBox.setBounds(20, 100, 300, 225);
+    depthSetBox.setBounds(475, 100, 300, 225);
+    
     //for mouseDrag component
     constrainer.setMinimumOnscreenAmounts (getHeight(), getWidth(), getHeight(), getWidth());
-
+    
 }
 
 void UpmixerAudioProcessorEditor::timerCallback() {

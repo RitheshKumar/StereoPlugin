@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 #include "ErrorDef.h"
-#include "DspFilters/Filter.h"
-#include "DspFilters/Dsp.h"
+#include "Filter.h"
+#include "Dsp.h"
 
 class Elliptic;
 

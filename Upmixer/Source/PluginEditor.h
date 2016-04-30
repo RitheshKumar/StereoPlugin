@@ -14,6 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 #include "peakBar.cpp"
+#include "dragBox.cpp"
 
 
 //==============================================================================
@@ -41,6 +42,7 @@ private:
     peakBar correlationBar,
             ppmBarL, ppmBarR;
     ComboBox presetList;
+    dragBox widthSetBox, depthSetBox;
     
     Label corrBarLabel;
 

@@ -8,9 +8,10 @@
               pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="UpmixerAU"
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.Upmixer"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.1">
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.0">
   <MAINGROUP id="ebwOtO" name="Upmixer">
     <GROUP id="{4A9F2AB0-774D-B147-B578-69AA496F7AE4}" name="Include">
+      <FILE id="HAMikl" name="Mono2Stereo.h" compile="0" resource="0" file="Source/Mono2Stereo.h"/>
       <FILE id="eSAviM" name="Bessel.h" compile="0" resource="0" file="include/DspFilters/Bessel.h"/>
       <FILE id="Wk8z3N" name="Biquad.h" compile="0" resource="0" file="include/DspFilters/Biquad.h"/>
       <FILE id="tKUvTe" name="Butterworth.h" compile="0" resource="0" file="include/DspFilters/Butterworth.h"/>
@@ -46,26 +47,29 @@
       <FILE id="e7V0bP" name="Types.h" compile="0" resource="0" file="include/DspFilters/Types.h"/>
     </GROUP>
     <GROUP id="{3707AD4A-892A-33B5-53F9-FB1007B3F0D0}" name="Source">
-      <FILE id="I6Qbax" name="Bessel.cpp" compile="1" resource="0" file="Source/Bessel.cpp"/>
-      <FILE id="BDuHjv" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
-      <FILE id="tgfoho" name="Butterworth.cpp" compile="1" resource="0" file="Source/Butterworth.cpp"/>
-      <FILE id="X4hNQ8" name="Cascade.cpp" compile="1" resource="0" file="Source/Cascade.cpp"/>
-      <FILE id="vsMaBs" name="ChebyshevI.cpp" compile="1" resource="0" file="Source/ChebyshevI.cpp"/>
-      <FILE id="LipgGa" name="ChebyshevII.cpp" compile="1" resource="0" file="Source/ChebyshevII.cpp"/>
-      <FILE id="lo1tao" name="Custom.cpp" compile="1" resource="0" file="Source/Custom.cpp"/>
-      <FILE id="Da2dVJ" name="Design.cpp" compile="1" resource="0" file="Source/Design.cpp"/>
-      <FILE id="p8LdnK" name="Documentation.cpp" compile="1" resource="0"
-            file="Source/Documentation.cpp"/>
+      <GROUP id="{246EF3B7-807B-A67B-25E4-BADD85255337}" name="FilterFiles">
+        <FILE id="I6Qbax" name="Bessel.cpp" compile="1" resource="0" file="Source/Bessel.cpp"/>
+        <FILE id="BDuHjv" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
+        <FILE id="tgfoho" name="Butterworth.cpp" compile="1" resource="0" file="Source/Butterworth.cpp"/>
+        <FILE id="X4hNQ8" name="Cascade.cpp" compile="1" resource="0" file="Source/Cascade.cpp"/>
+        <FILE id="vsMaBs" name="ChebyshevI.cpp" compile="1" resource="0" file="Source/ChebyshevI.cpp"/>
+        <FILE id="b3fyFm" name="Elliptic.cpp" compile="1" resource="0" file="Source/Elliptic.cpp"/>
+        <FILE id="K48Yy6" name="Filter.cpp" compile="1" resource="0" file="Source/Filter.cpp"/>
+        <FILE id="BczVxD" name="Legendre.cpp" compile="1" resource="0" file="Source/Legendre.cpp"/>
+        <FILE id="QIQGLH" name="Param.cpp" compile="1" resource="0" file="Source/Param.cpp"/>
+        <FILE id="vEfvP1" name="PoleFilter.cpp" compile="1" resource="0" file="Source/PoleFilter.cpp"/>
+        <FILE id="oo7piG" name="RBJ.cpp" compile="1" resource="0" file="Source/RBJ.cpp"/>
+        <FILE id="HRogsa" name="RootFinder.cpp" compile="1" resource="0" file="Source/RootFinder.cpp"/>
+        <FILE id="Uir18L" name="State.cpp" compile="1" resource="0" file="Source/State.cpp"/>
+        <FILE id="LipgGa" name="ChebyshevII.cpp" compile="1" resource="0" file="Source/ChebyshevII.cpp"/>
+        <FILE id="lo1tao" name="Custom.cpp" compile="1" resource="0" file="Source/Custom.cpp"/>
+        <FILE id="Da2dVJ" name="Design.cpp" compile="1" resource="0" file="Source/Design.cpp"/>
+        <FILE id="p8LdnK" name="Documentation.cpp" compile="1" resource="0"
+              file="Source/Documentation.cpp"/>
+      </GROUP>
       <FILE id="Gd5U21" name="dragBox.cpp" compile="1" resource="0" file="Source/dragBox.cpp"/>
-      <FILE id="b3fyFm" name="Elliptic.cpp" compile="1" resource="0" file="Source/Elliptic.cpp"/>
-      <FILE id="K48Yy6" name="Filter.cpp" compile="1" resource="0" file="Source/Filter.cpp"/>
-      <FILE id="BczVxD" name="Legendre.cpp" compile="1" resource="0" file="Source/Legendre.cpp"/>
-      <FILE id="QIQGLH" name="Param.cpp" compile="1" resource="0" file="Source/Param.cpp"/>
-      <FILE id="vEfvP1" name="PoleFilter.cpp" compile="1" resource="0" file="Source/PoleFilter.cpp"/>
-      <FILE id="oo7piG" name="RBJ.cpp" compile="1" resource="0" file="Source/RBJ.cpp"/>
-      <FILE id="HRogsa" name="RootFinder.cpp" compile="1" resource="0" file="Source/RootFinder.cpp"/>
-      <FILE id="Uir18L" name="State.cpp" compile="1" resource="0" file="Source/State.cpp"/>
       <FILE id="Rsu2m5" name="peakBar.cpp" compile="1" resource="0" file="Source/peakBar.cpp"/>
+      <FILE id="mXsimx" name="Mono2Stereo.cpp" compile="1" resource="0" file="Source/Mono2Stereo.cpp"/>
       <FILE id="XfLG3w" name="PeakProgramMeter.cpp" compile="1" resource="0"
             file="Source/PeakProgramMeter.cpp"/>
       <FILE id="Rsfgin" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -76,7 +80,7 @@
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" postbuildCommand="" vstFolder=""
-               externalLibraries="" customXcodeResourceFolders="/Users/musictechnology/Documents/StereoPlugin/Upmixer/include"
+               externalLibraries="" customXcodeResourceFolders="/Users/Rithesh/Documents/Learn C++/ASE/StereoPlugin/Upmixer/include"
                vst3Folder="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Upmixer"
@@ -85,20 +89,20 @@
                        osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_video" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../Juce/newJuce/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../Juce/newJuce/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
