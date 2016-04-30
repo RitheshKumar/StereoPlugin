@@ -14,7 +14,7 @@ Error_t Mono2Stereo::createInstance(Mono2Stereo*& pMono2Stereo) {
     if (!pMono2Stereo) {
         return kUnknownError;
     }
-
+    
     return kNoError;
 }
 
@@ -47,7 +47,27 @@ Error_t Mono2Stereo::initInstance(float sampleRate) {
     createFilter();
     
     //set initial parameters for each filter
-    
+    //Left channel 1
+    initialBandPassFilterParam("Left1");
+    m_pLeft1Filter->setParams(m_FilterParams);
+    //Left channel 2
+    initialBandPassFilterParam("Left2");
+    m_pLeft2Filter->setParams(m_FilterParams);
+    //Left channel 3
+    initialBandPassFilterParam("Left3");
+    m_pLeft3Filter->setParams(m_FilterParams);
+    //Right channel 1
+    initialBandPassFilterParam("Right1");
+    m_pRight1Filter->setParams(m_FilterParams);
+    //Right channel 2
+    initialBandPassFilterParam("Right2");
+    m_pRight2Filter->setParams(m_FilterParams);
+    //Right channel 3
+    initialBandPassFilterParam("Right3");
+    m_pRight3Filter->setParams(m_FilterParams);
+    //Common filter
+    initialBandPassFilterParam("Common");
+    m_pBothChannelFilter->setParams(m_FilterParams);
     
     m_bisInitialized = true;
     return kNoError;
@@ -73,6 +93,8 @@ Error_t Mono2Stereo::resetInstance() {
     m_pRight2Filter = 0;
     delete m_pRight3Filter;
     m_pRight3Filter = 0;
+    delete m_pBothChannelFilter;
+    m_pBothChannelFilter = 0;
     
     return kNoError;
 }
@@ -90,29 +112,43 @@ Error_t Mono2Stereo::setParam(Mono2StereoParam_t param, float paramValue) {
 
 Error_t Mono2Stereo::createFilter() {
     //create array of pointers: point to band pass filters
-    m_pLeft1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::LowPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pLeft2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pLeft3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pRight1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pRight2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pRight3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::HighPass <4>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pRight1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pRight2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pRight3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
     
     return kNoError;
 }
 
-Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID, float sampleRate) {
+Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID) {
     if (!m_bisInitialized) {
         return kNotInitializedError;
     }
-    m_FilterParams[0] = sampleRate;
-    if (filterID.compare("Left2")) {
-       
+    m_FilterParams[0] = m_fSampleRate;
+    m_FilterParams[1] = 6;  //order of the filter
+    if (filterID.compare("Left1")) {
+        m_FilterParams[2] = 3650;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
+    } else if (filterID.compare("Left2")) {
+        m_FilterParams[2] = 10250;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
     } else if (filterID.compare("Left3")) {
-        
+        m_FilterParams[2] = 16850;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
     } else if (filterID.compare("Right1")) {
-        
+        m_FilterParams[2] = 6950;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
     } else if (filterID.compare("Right2")) {
-        
+        m_FilterParams[2] = 13550;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
+    } else if (filterID.compare("Right3")) {
+        m_FilterParams[2] = 20250;   //ceter frequency
+        m_FilterParams[3] = 3500;   //bandwidth
+    } else if (filterID.compare("Common")) {
+        m_FilterParams[2] = 1025;   //center frequency
+        m_FilterParams[3] = 1950;   //band width
     }
     
     
