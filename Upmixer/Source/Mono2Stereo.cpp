@@ -30,7 +30,7 @@ Error_t Mono2Stereo::destroyInstance(Mono2Stereo*& pMono2Stereo) {
     return kNoError;
 }
 
-Error_t Mono2Stereo::initInstance(float sampleRate) {
+Error_t Mono2Stereo::initInstance(float sampleRate, int numOfFrames) {
     m_fSampleRate = sampleRate;
     
     //set parameter ranges
@@ -69,8 +69,8 @@ Error_t Mono2Stereo::initInstance(float sampleRate) {
     initialBandPassFilterParam("Common");
     m_pBothChannelFilter->setParams(m_FilterParams);
     
-    //allocate memory for temporary buffer
-    m_pfTempBuffer = new float[10000];
+    //allocate memory for temporary buffer based on number of frames per block
+    m_pfTempBuffer = new float[numOfFrames * 4];
     
     m_bisInitialized = true;
     return kNoError;
@@ -98,6 +98,10 @@ Error_t Mono2Stereo::resetInstance() {
     m_pRight3Filter = 0;
     delete m_pBothChannelFilter;
     m_pBothChannelFilter = 0;
+    delete m_pfTempBuffer;
+    m_pfTempBuffer = 0;
+    
+    
     
     return kNoError;
 }
@@ -159,14 +163,15 @@ Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID) {
     return kNoError;
 }
 
-Error_t Mono2Stereo::process(const float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames) {
+Error_t Mono2Stereo::process(float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames) {
     //1, copy the input buffer to the temp buffer
-    
+    memcpy(m_pfTempBuffer, pfInputBuffer, iNumberOfFrames);
     //2, process the temp buffer by a bandpass filter
-    
+    m_pLeft1Filter->process(iNumberOfFrames, &m_pfTempBuffer);
     //3, apply filter gain
     
     //4, copy the temp to the output buffer
-    
+    memcpy(pfOutputBuffer, m_pfTempBuffer, iNumberOfFrames);
     return kNoError;
 }
+

@@ -33,13 +33,13 @@ public:
     static Error_t createInstance (Mono2Stereo*& pMono2Stereo);
     static Error_t destroyInstance (Mono2Stereo*& pMono2Stereo);
     
-    Error_t initInstance(float sampleRate);
+    Error_t initInstance(float sampleRate, int numOfFrames);
     Error_t resetInstance();
     
     Error_t setParam(Mono2StereoParam_t param, float paramValue);
     float getParam() const;
     
-    Error_t process (const float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames);
+    Error_t process (float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames);
     Error_t createFilter();
     Error_t initialBandPassFilterParam(std::string filterID);
 
