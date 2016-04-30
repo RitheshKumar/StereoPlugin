@@ -30,7 +30,7 @@ Error_t Mono2Stereo::destroyInstance(Mono2Stereo*& pMono2Stereo) {
     return kNoError;
 }
 
-Error_t Mono2Stereo::initInstance(float sampleRate) {
+Error_t Mono2Stereo::initInstance(float sampleRate, int numOfFrames) {
     m_fSampleRate = sampleRate;
     
     //set parameter ranges
@@ -69,6 +69,9 @@ Error_t Mono2Stereo::initInstance(float sampleRate) {
     initialBandPassFilterParam("Common");
     m_pBothChannelFilter->setParams(m_FilterParams);
     
+    //allocate memory for temporary buffer based on number of frames per block
+    m_pfTempBuffer = new float[numOfFrames * 4];
+    
     m_bisInitialized = true;
     return kNoError;
 }
@@ -95,6 +98,10 @@ Error_t Mono2Stereo::resetInstance() {
     m_pRight3Filter = 0;
     delete m_pBothChannelFilter;
     m_pBothChannelFilter = 0;
+    delete m_pfTempBuffer;
+    m_pfTempBuffer = 0;
+    
+    
     
     return kNoError;
 }
@@ -155,3 +162,100 @@ Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID) {
     
     return kNoError;
 }
+
+Error_t Mono2Stereo::process(float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames) {
+    //1, copy the input buffer to the temp buffer
+    memcpy(m_pfTempBuffer, pfInputBuffer, iNumberOfFrames);
+    //2, process the temp buffer by a bandpass filter
+    m_pLeft1Filter->process(iNumberOfFrames, &m_pfTempBuffer);
+    //3, apply filter gain
+    
+    //4, copy the temp to the output buffer
+    memcpy(pfOutputBuffer, m_pfTempBuffer, iNumberOfFrames);
+    return kNoError;
+}
+
+
+//////////////////////////////////////////////////////////////////////
+
+
+//class Mono2StereoTests  : public UnitTest
+//{
+//public:
+//    Mono2StereoTests() : UnitTest ("Mono2Stereo"),
+//    _ppfInputData( new float*[3]),
+//    _freq(0),
+//    _sampleRate(44100),
+//    _numSamples(4096),
+//    _numChannels(3)
+//    {
+//        
+//        Mono2Stereo::createInstance(testObj);
+//        testObj->initInstance(_sampleRate, _numSamples );
+//        setVal( _ppfInputData,"init");
+//        
+//    }
+//    
+//    ~Mono2StereoTests() { Mono2Stereo::destroyInstance(testObj); }
+//    
+//    void runTest() override
+//    {
+//        beginTest ("ZeroCheck"); {
+//            
+//            std::cout<<"This Test is aashome\n";
+//        }
+//        
+//        
+//        beginTest ("DC Check"); {
+//            
+//            setVal( _ppfInputData, "set", 1.5f );
+//            
+////            testObj->correlate( (const float**) _ppfInputData, _freq, _numSamples );
+//            
+////            expect(_freq == 0 );
+//        }
+//        
+//        
+//        beginTest("Write Audio Correlated Output"); {
+//            
+////            FileRW::fileRead( _ppfAudioFile, _numSamples, (char *)"/Users/Rithesh/Documents/Learn C++/ASE/notes/Matlab_ASE/audioIn.txt");
+//            
+////            testObj -> correlate( (const float**) _ppfAudioFile, _freq, _numSamples);
+//            
+////            expect(_freq == 441);
+//            
+//        }
+//        
+//    }
+//private:
+//    float **_ppfInputData, _freq, **_ppfAudioFile;
+//    int _sampleRate,_numSamples,_numChannels;
+//    
+//    Mono2Stereo *testObj;
+//    
+//    //private Function
+//    void setVal( float **input, const char *string, float setValue = 0) {
+//        
+//        
+//        if( strcmp("init",string) == 0 ){
+//            
+//            for( int c = 0; c<_numChannels; c++ ) {
+//                _ppfInputData[c] = new float[_numSamples];
+//                std::fill(_ppfInputData[c],_ppfInputData[c]+_numSamples, setValue);
+//            }
+//            
+//        }
+//        else if( strcmp("set",string) == 0 ){
+//            
+//            for( int c = 0; c<_numChannels; c++ ) {
+//                std::fill(_ppfInputData[c],_ppfInputData[c]+_numSamples, setValue);
+//            }
+//        }
+//    }
+//};
+//
+//static Mono2StereoTests mono2StereoTest;
+//
+////#endif
+
+

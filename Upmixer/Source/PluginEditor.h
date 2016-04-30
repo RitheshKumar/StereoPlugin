@@ -49,6 +49,10 @@ private:
     ComponentBoundsConstrainer constrainer;
     ComponentDragger dragger;
     
+
+    //Run unitTests
+    Array<UnitTest*> myTests = UnitTest::getAllTests();
+    UnitTestRunner testRunner;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (UpmixerAudioProcessorEditor)
 };
 

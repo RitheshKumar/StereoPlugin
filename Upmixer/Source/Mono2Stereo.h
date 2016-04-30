@@ -13,6 +13,8 @@
 #include "ErrorDef.h"
 #include "Filter.h"
 #include "Dsp.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+#include <fstream>
 
 class Elliptic;
 
@@ -33,13 +35,13 @@ public:
     static Error_t createInstance (Mono2Stereo*& pMono2Stereo);
     static Error_t destroyInstance (Mono2Stereo*& pMono2Stereo);
     
-    Error_t initInstance(float sampleRate);
+    Error_t initInstance(float sampleRate, int numOfFrames);
     Error_t resetInstance();
     
     Error_t setParam(Mono2StereoParam_t param, float paramValue);
     float getParam() const;
     
-    Error_t process (const float *ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
+    Error_t process (float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames);
     Error_t createFilter();
     Error_t initialBandPassFilterParam(std::string filterID);
     
@@ -54,6 +56,7 @@ private:
     float m_fSampleRate;
     float m_aaafParamRange[kNumOfFilter][kNumOfParams][2];
     //    float m_aaFilterParamTable[kNumOfFilter][kNumOfParams];
+    float* m_pfTempBuffer;
     
     Dsp::Params m_FilterParams;
     Dsp::Filter* m_pLeft1Filter;

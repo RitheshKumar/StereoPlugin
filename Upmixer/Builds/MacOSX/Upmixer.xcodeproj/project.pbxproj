@@ -31,7 +31,6 @@
 		27FDB5B0845A1D85AB02E578 /* juce_RezResources_AU.r in Rez */ = {isa = PBXBuildFile; fileRef = B3138BB8D4655F306192F091 /* juce_RezResources_AU.r */; };
 		2E56FEB5DCC3052AC9AED745 /* juce_audio_basics.mm in Sources */ = {isa = PBXBuildFile; fileRef = A676A5E107D396C1649304E3 /* juce_audio_basics.mm */; };
 		322D00549FAF8789802AC1D7 /* ChebyshevII.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D2D064CB794FC6A748BF8CF /* ChebyshevII.cpp */; };
-		3B50ED91258CB7BABA057B62 /* Mono2Stereo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3223F7994C67BC0D6DF154F4 /* Mono2Stereo.cpp */; };
 		3C13C6B58E493719738046C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BECE5A5A902E7AB87A1CE9 /* Cocoa.framework */; };
 		42B8B686F6D5FF589A1A45FE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A27A3C30105CE26D3BD204 /* OpenGL.framework */; };
 		46FB2F190B774F908AAF5387 /* Param.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4A86A1A493060789E636E /* Param.cpp */; };
@@ -135,7 +134,6 @@
 		0240DD2963010F37CE5E88BA /* juce_ReadWriteLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ReadWriteLock.h; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_core/threads/juce_ReadWriteLock.h; sourceTree = SOURCE_ROOT; };
 		031221000C1AB656F7B94E3C /* juce_WindowsMediaAudioFormat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_WindowsMediaAudioFormat.cpp; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_audio_formats/codecs/juce_WindowsMediaAudioFormat.cpp; sourceTree = SOURCE_ROOT; };
 		035D6960B19E7C5967327ABF /* juce_ChangeListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ChangeListener.h; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_events/broadcasters/juce_ChangeListener.h; sourceTree = SOURCE_ROOT; };
-		0384A4DCBA4BCE33A4D019CC /* Mono2Stereo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mono2Stereo.h; path = ../../Source/Mono2Stereo.h; sourceTree = SOURCE_ROOT; };
 		03BECE5A5A902E7AB87A1CE9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		04002277B4115BB0372041DC /* juce_DirectoryContentsList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_DirectoryContentsList.h; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_gui_basics/filebrowser/juce_DirectoryContentsList.h; sourceTree = SOURCE_ROOT; };
 		042AF2445C48AF4AADAFC74F /* jdapistd.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = jdapistd.c; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_graphics/image_formats/jpglib/jdapistd.c; sourceTree = SOURCE_ROOT; };
@@ -375,7 +373,6 @@
 		3155FA72775848003B147040 /* Biquad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Biquad.h; path = ../../include/DspFilters/Biquad.h; sourceTree = SOURCE_ROOT; };
 		31AC21D01C100AFCD417C749 /* juce_ResamplingAudioSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ResamplingAudioSource.h; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_audio_basics/sources/juce_ResamplingAudioSource.h; sourceTree = SOURCE_ROOT; };
 		31EB6F0CE81E7D74B9B9E879 /* endswap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = endswap.h; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_audio_formats/codecs/flac/endswap.h; sourceTree = SOURCE_ROOT; };
-		3223F7994C67BC0D6DF154F4 /* Mono2Stereo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Mono2Stereo.cpp; path = ../../Source/Mono2Stereo.cpp; sourceTree = SOURCE_ROOT; };
 		32380ED533092D998978AE99 /* juce_AudioFormatReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioFormatReader.cpp; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_audio_formats/format/juce_AudioFormatReader.cpp; sourceTree = SOURCE_ROOT; };
 		32594C55364EDEC2074DF2A8 /* juce_ShapeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ShapeButton.h; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_gui_basics/buttons/juce_ShapeButton.h; sourceTree = SOURCE_ROOT; };
 		325D6A136D0C95E449AA0E75 /* juce_DrawableRectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_DrawableRectangle.h; path = ../../../../../../Juce/newJuce/JUCE/modules/juce_gui_basics/drawables/juce_DrawableRectangle.h; sourceTree = SOURCE_ROOT; };
@@ -2982,7 +2979,6 @@
 		B5DE3AE34E1FFEF97DE4FA68 /* Include */ = {
 			isa = PBXGroup;
 			children = (
-				0384A4DCBA4BCE33A4D019CC /* Mono2Stereo.h */,
 				9AA6F4CBB5E8DAF5E63D7B8D /* Bessel.h */,
 				3155FA72775848003B147040 /* Biquad.h */,
 				8DDED187E07022C55269CEA0 /* Butterworth.h */,
@@ -3181,7 +3177,6 @@
 				2EDBF8941F28E32C6967351A /* FilterFiles */,
 				AF46DC5CDFD78D9E78AFDE09 /* dragBox.cpp */,
 				A023880215AFC1EBD611C14C /* peakBar.cpp */,
-				3223F7994C67BC0D6DF154F4 /* Mono2Stereo.cpp */,
 				D891B24A59708EB221A30918 /* PeakProgramMeter.cpp */,
 				4FE06A55CDCE305326CFA27E /* PluginProcessor.cpp */,
 				D9DEF54BA0180CC3CFA05A9A /* PluginEditor.cpp */,
@@ -4010,7 +4005,6 @@
 				B560483662ADFAF8A427B3B6 /* Documentation.cpp in Sources */,
 				B17C55E113F425CE380BC815 /* dragBox.cpp in Sources */,
 				79C429CFDD7242FDADCACF51 /* peakBar.cpp in Sources */,
-				3B50ED91258CB7BABA057B62 /* Mono2Stereo.cpp in Sources */,
 				D811157D7771A90A66380F5C /* PeakProgramMeter.cpp in Sources */,
 				B0862F9B1CD5BB9214A67C16 /* PluginProcessor.cpp in Sources */,
 				19AA234599FA9986269D16DF /* PluginEditor.cpp in Sources */,
