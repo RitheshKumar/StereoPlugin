@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>839913C7-B67C-4EEC-9E20-FCF358ED0C9C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Upmixer</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>F37AEAAC4A10A4343E6255D9F40AD7B065022C99</key>
 		<string>https://github.com/RitheshKumar/StereoPlugin.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Upmixer/Builds/MacOSX/Upmixer.xcodeproj</string>
+	<string>Upmixer/Builds/MacOSX/Upmixer.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F37AEAAC4A10A4343E6255D9F40AD7B065022C99</key>

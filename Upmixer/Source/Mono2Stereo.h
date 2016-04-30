@@ -39,7 +39,7 @@ public:
     Error_t setParam(Mono2StereoParam_t param, float paramValue);
     float getParam() const;
     
-    Error_t process (const float *ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
+    Error_t process (const float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames);
     Error_t createFilter();
     Error_t initialBandPassFilterParam(std::string filterID);
 
@@ -54,6 +54,7 @@ private:
     float m_fSampleRate;
     float m_aaafParamRange[kNumOfFilter][kNumOfParams][2];
 //    float m_aaFilterParamTable[kNumOfFilter][kNumOfParams];
+    float* m_pfTempBuffer;
     
     Dsp::Params m_FilterParams;
     Dsp::Filter* m_pLeft1Filter;
