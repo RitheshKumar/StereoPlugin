@@ -11,6 +11,7 @@
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.1">
   <MAINGROUP id="ebwOtO" name="Upmixer">
     <GROUP id="{4A9F2AB0-774D-B147-B578-69AA496F7AE4}" name="Include">
+      <FILE id="eaMmKB" name="Mono2Stereo.h" compile="0" resource="0" file="Source/Mono2Stereo.h"/>
       <FILE id="eSAviM" name="Bessel.h" compile="0" resource="0" file="include/DspFilters/Bessel.h"/>
       <FILE id="Wk8z3N" name="Biquad.h" compile="0" resource="0" file="include/DspFilters/Biquad.h"/>
       <FILE id="tKUvTe" name="Butterworth.h" compile="0" resource="0" file="include/DspFilters/Butterworth.h"/>
@@ -46,6 +47,7 @@
       <FILE id="e7V0bP" name="Types.h" compile="0" resource="0" file="include/DspFilters/Types.h"/>
     </GROUP>
     <GROUP id="{3707AD4A-892A-33B5-53F9-FB1007B3F0D0}" name="Source">
+      <FILE id="Ap5BVr" name="Mono2Stereo.cpp" compile="1" resource="0" file="Source/Mono2Stereo.cpp"/>
       <FILE id="I6Qbax" name="Bessel.cpp" compile="1" resource="0" file="Source/Bessel.cpp"/>
       <FILE id="BDuHjv" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
       <FILE id="tgfoho" name="Butterworth.cpp" compile="1" resource="0" file="Source/Butterworth.cpp"/>
@@ -76,7 +78,7 @@
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" postbuildCommand="" vstFolder=""
-               externalLibraries="" customXcodeResourceFolders="/Users/musictechnology/Documents/StereoPlugin/Upmixer/include"
+               externalLibraries="" customXcodeResourceFolders="/Users/musictechnology/Documents/StereoPlugin/Upmixer/include&#10;/Users/musictechnology/Documents/StereoPlugin/Upmixer/Source"
                vst3Folder="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="Upmixer"
@@ -120,6 +122,6 @@
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
   <LIVE_SETTINGS>
-    <OSX headerPath="/Users/musictechnology/Documents/StereoPlugin/Upmixer/include"/>
+    <OSX headerPath="/Users/musictechnology/Documents/StereoPlugin/Upmixer/include&#10;"/>
   </LIVE_SETTINGS>
 </JUCERPROJECT>
