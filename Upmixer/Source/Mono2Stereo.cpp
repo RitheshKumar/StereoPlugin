@@ -47,8 +47,27 @@ Error_t Mono2Stereo::initInstance(float sampleRate) {
     createFilter();
     
     //set initial parameters for each filter
-    initialBandPassFilterParam("Left1", m_fSampleRate);
+    //Left channel 1
+    initialBandPassFilterParam("Left1");
     m_pLeft1Filter->setParams(m_FilterParams);
+    //Left channel 2
+    initialBandPassFilterParam("Left2");
+    m_pLeft2Filter->setParams(m_FilterParams);
+    //Left channel 3
+    initialBandPassFilterParam("Left3");
+    m_pLeft3Filter->setParams(m_FilterParams);
+    //Right channel 1
+    initialBandPassFilterParam("Right1");
+    m_pRight1Filter->setParams(m_FilterParams);
+    //Right channel 2
+    initialBandPassFilterParam("Right2");
+    m_pRight2Filter->setParams(m_FilterParams);
+    //Right channel 3
+    initialBandPassFilterParam("Right3");
+    m_pRight3Filter->setParams(m_FilterParams);
+    //Common filter
+    initialBandPassFilterParam("Common");
+    m_pBothChannelFilter->setParams(m_FilterParams);
     
     m_bisInitialized = true;
     return kNoError;
@@ -103,11 +122,11 @@ Error_t Mono2Stereo::createFilter() {
     return kNoError;
 }
 
-Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID, float sampleRate) {
+Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID) {
     if (!m_bisInitialized) {
         return kNotInitializedError;
     }
-    m_FilterParams[0] = sampleRate;
+    m_FilterParams[0] = m_fSampleRate;
     m_FilterParams[1] = 6;  //order of the filter
     if (filterID.compare("Left1")) {
         m_FilterParams[2] = 3650;   //ceter frequency

@@ -41,7 +41,7 @@ public:
     
     Error_t process (const float *ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
     Error_t createFilter();
-    Error_t initialBandPassFilterParam(std::string filterID, float sampleRate);
+    Error_t initialBandPassFilterParam(std::string filterID);
 
     
 private:
