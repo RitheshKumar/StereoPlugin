@@ -33,9 +33,9 @@ THE SOFTWARE.
 
 *******************************************************************************/
 
-#include "DspFilters/Common.h"
-#include "DspFilters/Bessel.h"
-#include "DspFilters/RootFinder.h"
+#include "Common.h"
+#include "Bessel.h"
+#include "RootFinder.h"
 
 namespace Dsp {
 

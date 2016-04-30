@@ -33,8 +33,8 @@ THE SOFTWARE.
 
 *******************************************************************************/
 
-#include "DspFilters/Common.h"
-#include "DspFilters/Butterworth.h"
+#include "Common.h"
+#include "Butterworth.h"
 
 namespace Dsp {
 

@@ -33,8 +33,8 @@ THE SOFTWARE.
 
 *******************************************************************************/
 
-#include "DspFilters/Common.h"
-#include "DspFilters/ChebyshevII.h"
+#include "Common.h"
+#include "ChebyshevII.h"
 
 namespace Dsp {
 

@@ -33,8 +33,8 @@ THE SOFTWARE.
 
 *******************************************************************************/
 
-#include "DspFilters/Common.h"
-#include "DspFilters/RootFinder.h"
+#include "Common.h"
+#include "RootFinder.h"
 #include <stdexcept>
 
 namespace Dsp {
