@@ -47,7 +47,8 @@ Error_t Mono2Stereo::initInstance(float sampleRate) {
     createFilter();
     
     //set initial parameters for each filter
-    
+    initialBandPassFilterParam("Left1", m_fSampleRate);
+    m_pLeft1Filter->setParams(m_FilterParams);
     
     m_bisInitialized = true;
     return kNoError;
@@ -73,6 +74,8 @@ Error_t Mono2Stereo::resetInstance() {
     m_pRight2Filter = 0;
     delete m_pRight3Filter;
     m_pRight3Filter = 0;
+    delete m_pBothChannelFilter;
+    m_pBothChannelFilter = 0;
     
     return kNoError;
 }
@@ -90,12 +93,12 @@ Error_t Mono2Stereo::setParam(Mono2StereoParam_t param, float paramValue) {
 
 Error_t Mono2Stereo::createFilter() {
     //create array of pointers: point to band pass filters
-    m_pLeft1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::LowPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pLeft2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pLeft3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pRight1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pRight2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
-    m_pRight3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::HighPass <4>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pRight1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pRight2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pRight3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
     
     return kNoError;
 }
@@ -105,14 +108,28 @@ Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID, float samp
         return kNotInitializedError;
     }
     m_FilterParams[0] = sampleRate;
-    if (filterID.compare("Left2")) {
-       
+    m_FilterParams[1] = 6;  //order of the filter
+    if (filterID.compare("Left1")) {
+        m_FilterParams[2] = 3650;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
+    } else if (filterID.compare("Left2")) {
+        m_FilterParams[2] = 10250;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
     } else if (filterID.compare("Left3")) {
-        
+        m_FilterParams[2] = 16850;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
     } else if (filterID.compare("Right1")) {
-        
+        m_FilterParams[2] = 6950;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
     } else if (filterID.compare("Right2")) {
-        
+        m_FilterParams[2] = 13550;   //ceter frequency
+        m_FilterParams[3] = 3300;   //bandwidth
+    } else if (filterID.compare("Right3")) {
+        m_FilterParams[2] = 20250;   //ceter frequency
+        m_FilterParams[3] = 3500;   //bandwidth
+    } else if (filterID.compare("Common")) {
+        m_FilterParams[2] = 1025;   //center frequency
+        m_FilterParams[3] = 1950;   //band width
     }
     
     

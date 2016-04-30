@@ -62,6 +62,7 @@ private:
     Dsp::Filter* m_pRight1Filter;
     Dsp::Filter* m_pRight2Filter;
     Dsp::Filter* m_pRight3Filter;
+    Dsp::Filter* m_pBothChannelFilter;
     
     
     
