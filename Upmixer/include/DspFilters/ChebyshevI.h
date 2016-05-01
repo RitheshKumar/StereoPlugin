@@ -62,7 +62,7 @@ public:
                double rippleDb);
 
 private:
-  int m_numPoles;
+//  int m_numPoles;
   double m_rippleDb;
 };
 
@@ -78,7 +78,7 @@ public:
                double rippleDb);
 
 private:
-  int m_numPoles;
+//  int m_numPoles;
   double m_rippleDb;
   double m_gainDb;
 };

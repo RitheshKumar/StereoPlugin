@@ -98,8 +98,8 @@ void AnalogLowPass::design (int numPoles,
 //------------------------------------------------------------------------------
 
 AnalogLowShelf::AnalogLowShelf ()
-  : m_numPoles (-1)
 {
+    m_numPoles = -1;
   setNormal (doublePi, 1);
 }
 

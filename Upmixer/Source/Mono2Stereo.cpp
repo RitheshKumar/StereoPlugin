@@ -139,16 +139,17 @@ Error_t Mono2Stereo::createFilter() {
     m_pRight1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
     m_pRight2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
     m_pRight3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pBothChannelFilter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
     
-    //bad way to do this, but...
-    //also a bug is here
-    m_pFilters[0] = m_pLeft1Filter;
-    m_pFilters[1] = m_pLeft2Filter;
-    m_pFilters[2] = m_pLeft3Filter;
-    m_pFilters[3] = m_pRight1Filter;
-    m_pFilters[4] = m_pRight2Filter;
-    m_pFilters[5] = m_pRight3Filter;
-    m_pFilters[6] = m_pBothChannelFilter;
+//    //bad way to do this, but...
+//    //also a bug is here
+//    m_pFilters[0] = m_pLeft1Filter;
+//    m_pFilters[1] = m_pLeft2Filter;
+//    m_pFilters[2] = m_pLeft3Filter;
+//    m_pFilters[3] = m_pRight1Filter;
+//    m_pFilters[4] = m_pRight2Filter;
+//    m_pFilters[5] = m_pRight3Filter;
+//    m_pFilters[6] = m_pBothChannelFilter;
     
     
     return kNoError;
@@ -188,18 +189,19 @@ Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID) {
 
 Error_t Mono2Stereo::process(const float **pfInputBuffer, float **pfOutputBuffer, int iNumberOfFrames) {
     
-    for (int filterID = 0; filterID < 7; filterID++) {
+//    for (int filterID = 0; filterID < 7; filterID++) {
     //1, copy the input buffer to the temp buffer
-        memcpy(m_pfTempBuffer[0], pfInputBuffer[0], iNumberOfFrames);
+        memcpy(m_pfTempBuffer[0], pfInputBuffer, iNumberOfFrames);
     //2, process the temp buffer by a bandpass filter
-        m_pFilters[filterID]->process(iNumberOfFrames, m_pfTempBuffer);
+//        m_pFilters[filterID]->process(iNumberOfFrames, m_pfTempBuffer);
+    m_pLeft1Filter->process(iNumberOfFrames, m_pfTempBuffer);
     //3, apply filter gain
     
     //4, copy the temp to the output buffer
-        memcpy(pfOutputBuffer[0], m_pfTempBuffer[0], iNumberOfFrames);
+        memcpy(pfOutputBuffer, m_pfTempBuffer[0], iNumberOfFrames);
         
-        filterID++;
-    }
+//        filterID++;
+//    }
     
     return kNoError;
 }

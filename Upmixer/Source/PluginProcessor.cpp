@@ -104,6 +104,7 @@ void UpmixerAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
     // This is here to avoid people getting screaming feedback
     // when they first compile a plugin, but obviously you don't need to keep
     // this code if your algorithm always overwrites all the output channels.
+    
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
@@ -116,12 +117,15 @@ void UpmixerAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
 //        // ..do something to the data...
 //    }
     
-    pPPM->ppmProcess( buffer.getArrayOfReadPointers(), buffer.getNumSamples());
+//    pPPM->ppmProcess( buffer.getArrayOfReadPointers(), buffer.getNumSamples());
+    
+//    pM2S->process(buffer.getReadPointer(0), buffer.getWritePointer(0), buffer.getNumSamples());
+    
     pM2S->process(buffer.getArrayOfReadPointers(), buffer.getArrayOfWritePointers(), buffer.getNumSamples());
     
-    for (int channel=0; channel < buffer.getNumChannels(); channel++) {
-        _peakVal[channel] = pPPM->getPeak(channel);
-    }
+//    for (int channel=0; channel < buffer.getNumChannels(); channel++) {
+//        _peakVal[channel] = pPPM->getPeak(channel);
+//    }
 //    _peakVal[0] += 0.5f; //This is a debug tactic
 }
 

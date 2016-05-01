@@ -61,7 +61,7 @@ public:
   void design (const int numPoles);
 
 private:
-  int m_numPoles;
+//  int m_numPoles;
 };
 
 //------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ public:
   void design (int numPoles, double gainDb);
 
 private:
-  int m_numPoles;
+//  int m_numPoles;
   double m_gainDb;
 };
 

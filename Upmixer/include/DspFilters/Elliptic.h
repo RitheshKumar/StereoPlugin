@@ -117,7 +117,7 @@ private:
   double m_rootR[100];
   double m_rootI[100];
 
-  int m_numPoles;
+//  int m_numPoles;
   double m_rippleDb;
   double m_rolloff;
 };

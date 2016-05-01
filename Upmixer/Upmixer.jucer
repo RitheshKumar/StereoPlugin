@@ -11,6 +11,8 @@
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.2.1">
   <MAINGROUP id="ebwOtO" name="Upmixer">
     <GROUP id="{4A9F2AB0-774D-B147-B578-69AA496F7AE4}" name="Include">
+      <FILE id="DyFThO" name="Mono2StereoNotWorking.h" compile="0" resource="0"
+            file="Source/Mono2StereoNotWorking.h"/>
       <FILE id="eaMmKB" name="Mono2Stereo.h" compile="0" resource="0" file="Source/Mono2Stereo.h"
             xcodeResource="0"/>
       <FILE id="eSAviM" name="Bessel.h" compile="0" resource="0" file="include/DspFilters/Bessel.h"/>
@@ -50,6 +52,8 @@
     <GROUP id="{3707AD4A-892A-33B5-53F9-FB1007B3F0D0}" name="Source">
       <FILE id="Ap5BVr" name="Mono2Stereo.cpp" compile="1" resource="0" file="Source/Mono2Stereo.cpp"
             xcodeResource="0"/>
+      <FILE id="xhaLnq" name="Mono2StereoNotWorking.cpp" compile="0" resource="0"
+            file="Source/Mono2StereoNotWorking.cpp"/>
       <FILE id="I6Qbax" name="Bessel.cpp" compile="1" resource="0" file="Source/Bessel.cpp"/>
       <FILE id="BDuHjv" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
       <FILE id="tgfoho" name="Butterworth.cpp" compile="1" resource="0" file="Source/Butterworth.cpp"/>

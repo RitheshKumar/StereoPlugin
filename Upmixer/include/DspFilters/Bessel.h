@@ -93,7 +93,7 @@ public:
                WorkspaceBase* w);
 
 private:
-  int m_numPoles;
+//  int m_numPoles;
 };
 
 //------------------------------------------------------------------------------
@@ -108,7 +108,7 @@ public:
                WorkspaceBase* w);
 
 private:
-  int m_numPoles;
+//  int m_numPoles;
   double m_gainDb;
 };
 
