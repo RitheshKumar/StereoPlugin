@@ -141,8 +141,10 @@ public:
     m_normalGain = g;
   }
 
+protected:
+    int m_numPoles;
+
 private:
-  int m_numPoles;
   int m_maxPoles;
   PoleZeroPair* m_pair;
   double m_normalW;

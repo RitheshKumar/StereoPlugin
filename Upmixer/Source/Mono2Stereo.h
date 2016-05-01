@@ -14,6 +14,8 @@
 #include "Filter.h"
 #include "Dsp.h"
 
+#include "../JuceLibraryCode/JuceHeader.h"
+
 class Elliptic;
 
 class Mono2Stereo {
@@ -36,10 +38,10 @@ public:
     Error_t initInstance(float sampleRate, int numOfFrames);
     Error_t resetInstance();
     
-    Error_t setParam(Mono2StereoParam_t param, float paramValue);
-    float getParam() const;
+//    Error_t setParam(Mono2StereoParam_t param, float paramValue);
+//    float getParam() const;
     
-    Error_t process (float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames);
+    Error_t process (const float **pfInputBuffer, float **pfOutputBuffer, int iNumberOfFrames);
     Error_t createFilter();
     Error_t initialBandPassFilterParam(std::string filterID);
 
@@ -54,7 +56,7 @@ private:
     float m_fSampleRate;
     float m_aaafParamRange[kNumOfFilter][kNumOfParams][2];
 //    float m_aaFilterParamTable[kNumOfFilter][kNumOfParams];
-    float* m_pfTempBuffer;
+    float** m_pfTempBuffer;
     
     Dsp::Params m_FilterParams;
     Dsp::Filter* m_pLeft1Filter;
@@ -67,7 +69,7 @@ private:
     
     
     
-    bool isInParamRange (Mono2StereoParam_t param, float paramValue);
+//    bool isInParamRange (Mono2StereoParam_t param, float paramValue);
 };
 
 #endif /* defined(__Upmixer__Mono2Stereo__) */

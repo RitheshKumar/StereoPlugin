@@ -14,6 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 #include "peakBar.cpp"
+#include "dragBox.cpp"
 
 
 //==============================================================================
@@ -41,12 +42,17 @@ private:
     peakBar correlationBar,
             ppmBarL, ppmBarR;
     ComboBox presetList;
+    dragBox widthSetBox, depthSetBox;
     
     Label corrBarLabel;
 
     ComponentBoundsConstrainer constrainer;
     ComponentDragger dragger;
     
+
+    //Run unitTests
+    Array<UnitTest*> myTests = UnitTest::getAllTests();
+    UnitTestRunner testRunner;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (UpmixerAudioProcessorEditor)
 };
 

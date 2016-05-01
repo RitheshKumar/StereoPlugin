@@ -64,8 +64,8 @@ static double reversebessel (int k, int n)
 //------------------------------------------------------------------------------
 
 AnalogLowPass::AnalogLowPass ()
-  : m_numPoles (-1)
 {
+    m_numPoles = -1;
   setNormal (0, 1);
 }
 

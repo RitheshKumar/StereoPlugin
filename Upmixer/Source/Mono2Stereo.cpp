@@ -30,6 +30,14 @@ Error_t Mono2Stereo::destroyInstance(Mono2Stereo*& pMono2Stereo) {
     return kNoError;
 }
 
+Mono2Stereo::Mono2Stereo() {
+    
+}
+
+Mono2Stereo::~Mono2Stereo() {
+    
+}
+
 Error_t Mono2Stereo::initInstance(float sampleRate, int numOfFrames) {
     m_fSampleRate = sampleRate;
     
@@ -47,6 +55,7 @@ Error_t Mono2Stereo::initInstance(float sampleRate, int numOfFrames) {
     createFilter();
     
     //set initial parameters for each filter
+    
     //Left channel 1
     initialBandPassFilterParam("Left1");
     m_pLeft1Filter->setParams(m_FilterParams);
@@ -70,7 +79,8 @@ Error_t Mono2Stereo::initInstance(float sampleRate, int numOfFrames) {
     m_pBothChannelFilter->setParams(m_FilterParams);
     
     //allocate memory for temporary buffer based on number of frames per block
-    m_pfTempBuffer = new float[numOfFrames * 4];
+    m_pfTempBuffer = new float* [1];
+    m_pfTempBuffer[0] = new float [numOfFrames * 4];
     
     m_bisInitialized = true;
     return kNoError;
@@ -78,11 +88,11 @@ Error_t Mono2Stereo::initInstance(float sampleRate, int numOfFrames) {
 
 Error_t Mono2Stereo::resetInstance() {
     //set params to 0
-    for (int i = 1; i < kNumOfFilter; i++) {
-        for (int j = 0; j < kNumOfParams; i++) {
-            setParam((Mono2StereoParam_t)j, 0.f);
-        }
-    }
+//    for (int i = 1; i < kNumOfFilter; i++) {
+//        for (int j = 0; j < kNumOfParams; i++) {
+//            setParam((Mono2StereoParam_t)j, 0.f);
+//        }
+//    }
     
     delete m_pLeft1Filter;
     m_pLeft1Filter = 0;
@@ -98,6 +108,9 @@ Error_t Mono2Stereo::resetInstance() {
     m_pRight3Filter = 0;
     delete m_pBothChannelFilter;
     m_pBothChannelFilter = 0;
+    for (int i = 0; i < 1; i++ ) {
+        delete [] m_pfTempBuffer[i];
+    };
     delete m_pfTempBuffer;
     m_pfTempBuffer = 0;
     
@@ -106,54 +119,53 @@ Error_t Mono2Stereo::resetInstance() {
     return kNoError;
 }
 
-Error_t Mono2Stereo::setParam(Mono2StereoParam_t param, float paramValue) {
-    if (!m_bisInitialized) {
-        return kNotInitializedError;
-    }
-    if (!isInParamRange(param, paramValue)) {
-        return kFunctionInvalidArgsError;
-    }
-    
-    return kNoError;
-}
+//Error_t Mono2Stereo::setParam(Mono2StereoParam_t param, float paramValue) {
+//    if (!m_bisInitialized) {
+//        return kNotInitializedError;
+//    }
+//    
+////    if (!isInParamRange(param, paramValue)) {
+////        return kFunctionInvalidArgsError;
+////    }
+//    
+//    return kNoError;
+//}
 
 Error_t Mono2Stereo::createFilter() {
     //create array of pointers: point to band pass filters
-    m_pLeft1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
-    m_pLeft2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
-    m_pLeft3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
-    m_pRight1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
-    m_pRight2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
-    m_pRight3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <6>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
+    m_pLeft3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
+    m_pRight1Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
+    m_pRight2Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
+    m_pRight3Filter = new Dsp::SmoothedFilterDesign <Dsp::Elliptic::Design::BandPass <4>, 1, Dsp::DirectFormII>(1024);
     
     return kNoError;
 }
 
 Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID) {
-    if (!m_bisInitialized) {
-        return kNotInitializedError;
-    }
+    
     m_FilterParams[0] = m_fSampleRate;
     m_FilterParams[1] = 6;  //order of the filter
-    if (filterID.compare("Left1")) {
+    if (filterID.compare("Left1") == 0) {
         m_FilterParams[2] = 3650;   //ceter frequency
         m_FilterParams[3] = 3300;   //bandwidth
-    } else if (filterID.compare("Left2")) {
+    } else if (filterID.compare("Left2") == 0) {
         m_FilterParams[2] = 10250;   //ceter frequency
         m_FilterParams[3] = 3300;   //bandwidth
-    } else if (filterID.compare("Left3")) {
+    } else if (filterID.compare("Left3") == 0) {
         m_FilterParams[2] = 16850;   //ceter frequency
         m_FilterParams[3] = 3300;   //bandwidth
-    } else if (filterID.compare("Right1")) {
+    } else if (filterID.compare("Right1") == 0) {
         m_FilterParams[2] = 6950;   //ceter frequency
         m_FilterParams[3] = 3300;   //bandwidth
-    } else if (filterID.compare("Right2")) {
+    } else if (filterID.compare("Right2") == 0) {
         m_FilterParams[2] = 13550;   //ceter frequency
         m_FilterParams[3] = 3300;   //bandwidth
-    } else if (filterID.compare("Right3")) {
+    } else if (filterID.compare("Right3") == 0) {
         m_FilterParams[2] = 20250;   //ceter frequency
         m_FilterParams[3] = 3500;   //bandwidth
-    } else if (filterID.compare("Common")) {
+    } else if (filterID.compare("Common") == 0) {
         m_FilterParams[2] = 1025;   //center frequency
         m_FilterParams[3] = 1950;   //band width
     }
@@ -163,15 +175,25 @@ Error_t Mono2Stereo::initialBandPassFilterParam(std::string filterID) {
     return kNoError;
 }
 
-Error_t Mono2Stereo::process(float *pfInputBuffer, float *pfOutputBuffer, int iNumberOfFrames) {
+Error_t Mono2Stereo::process(const float **pfInputBuffer, float **pfOutputBuffer, int iNumberOfFrames) {
     //1, copy the input buffer to the temp buffer
-    memcpy(m_pfTempBuffer, pfInputBuffer, iNumberOfFrames);
+    memcpy(m_pfTempBuffer[0], pfInputBuffer[0], iNumberOfFrames);
     //2, process the temp buffer by a bandpass filter
-    m_pLeft1Filter->process(iNumberOfFrames, &m_pfTempBuffer);
+    m_pLeft1Filter->process(iNumberOfFrames, m_pfTempBuffer);
     //3, apply filter gain
     
     //4, copy the temp to the output buffer
-    memcpy(pfOutputBuffer, m_pfTempBuffer, iNumberOfFrames);
+    memcpy(pfOutputBuffer[0], m_pfTempBuffer[0], iNumberOfFrames);
     return kNoError;
 }
 
+//class Mono2StereoTest: public UnitTest {
+//public:
+//
+//    
+//private:
+//    float m_fSampleRate;
+//    int   m_iBlockSize;
+//    
+//    
+//};

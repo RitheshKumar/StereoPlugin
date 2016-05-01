@@ -67,9 +67,10 @@ double Solver::ellipticK (double k)
 //------------------------------------------------------------------------------
 
 AnalogLowPass::AnalogLowPass ()
-  : m_numPoles (-1)
+//  : m_numPoles (-1)
 {
-  setNormal (0, 1);
+    m_numPoles = -1;
+    setNormal (0, 1);
 }
 
 void AnalogLowPass::design (int numPoles,

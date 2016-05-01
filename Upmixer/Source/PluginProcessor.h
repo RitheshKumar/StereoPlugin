@@ -12,6 +12,8 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "PeakProgramMeter.h"
+#include "Mono2Stereo.h"
 
 
 //==============================================================================
@@ -58,6 +60,8 @@ public:
 private:
     //==============================================================================
     float *_peakVal; //we will store only values for the first 2 channels
+    PeakProgramMeter *pPPM;
+    Mono2Stereo *pM2S;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (UpmixerAudioProcessor)
 };

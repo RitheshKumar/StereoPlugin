@@ -15,10 +15,14 @@
 //==============================================================================
 UpmixerAudioProcessor::UpmixerAudioProcessor() : _peakVal(new float[2])
 {
+    PeakProgramMeter::createInstance(pPPM);
+    Mono2Stereo::createInstance(pM2S);
 }
 
 UpmixerAudioProcessor::~UpmixerAudioProcessor()
 {
+    PeakProgramMeter::destroyInstance(pPPM);
+    Mono2Stereo::destroyInstance(pM2S);
 }
 
 //==============================================================================
@@ -79,6 +83,8 @@ void UpmixerAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    pPPM->initInstance(sampleRate, samplesPerBlock, getTotalNumInputChannels());
+    pM2S->initInstance(sampleRate, samplesPerBlock);
 }
 
 void UpmixerAudioProcessor::releaseResources()
@@ -110,9 +116,13 @@ void UpmixerAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
 //        // ..do something to the data...
 //    }
     
-    for (int channel=0; channel < 2; channel++) {
-        _peakVal[channel] = buffer.getMagnitude(channel, 200, 1);
+    pPPM->ppmProcess( buffer.getArrayOfReadPointers(), buffer.getNumSamples());
+    pM2S->process(buffer.getArrayOfReadPointers(), buffer.getArrayOfWritePointers(), buffer.getNumSamples());
+    
+    for (int channel=0; channel < buffer.getNumChannels(); channel++) {
+        _peakVal[channel] = pPPM->getPeak(channel);
     }
+//    _peakVal[0] += 0.5f; //This is a debug tactic
 }
 
 //==============================================================================

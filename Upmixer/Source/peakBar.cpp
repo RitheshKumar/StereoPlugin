@@ -19,8 +19,10 @@ public:
     
     void mouseDrag (const MouseEvent& e) override   {
         
-//        dragger.dragComponent (this, e, &constrainer);
-        _peakVal = e.y;
+        //        dragger.dragComponent (this, e, &constrainer);
+        if(e.y < getHeight() && e.y >= 0) {
+            _peakVal = (1 - e.y*1.0f/getHeight()*1.0f); //std::cout<<_peakVal<<std::endl;
+        }
         repaint();
         
     }
@@ -38,7 +40,7 @@ public:
             int peakLevel = _peakVal*getWidth();
             g.fillRect( 0, getHeight()*(0.13), peakLevel , getHeight()*0.75 );
         }
-       
+        
     }
     
     void resized() override {
@@ -53,6 +55,7 @@ public:
 private:
     float _peakVal;
     bool _isVert;
+    
     
     ComponentBoundsConstrainer constrainer;
     ComponentDragger dragger;

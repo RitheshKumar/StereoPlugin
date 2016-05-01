@@ -41,8 +41,8 @@ namespace Dsp {
 namespace ChebyshevI {
 
 AnalogLowPass::AnalogLowPass ()
-  : m_numPoles (-1)
 {
+    m_numPoles = -1;
 }
 
 void AnalogLowPass::design (int numPoles,
